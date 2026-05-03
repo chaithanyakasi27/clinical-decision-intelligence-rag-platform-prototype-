@@ -1,0 +1,95 @@
+# ============================================================
+# Clinical Decision Intelligence Platform
+# requirements.txt
+# Python 3.11 — conda clinical-rag environment
+# ============================================================
+
+# ── Core utilities ───────────────────────────────────────────
+python-dotenv
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
+loguru
+tenacity
+tqdm
+rich
+
+# ── Data processing ──────────────────────────────────────────
+pandas
+numpy
+openpyxl
+
+# ── PDF ingestion ─────────────────────────────────────────────
+pymupdf
+pdfplumber
+reportlab
+jinja2
+
+# ── LangChain ecosystem ──────────────────────────────────────
+langchain
+langchain-community
+langchain-anthropic
+langchain-core
+langchain-text-splitters
+langgraph
+
+# ── Anthropic Claude ─────────────────────────────────────────
+anthropic
+boto3
+
+# ── Embeddings + Vector stores ───────────────────────────────
+# NOTE: faiss-gpu is installed via conda, not pip
+# Run: conda install -c pytorch faiss-gpu
+faiss-cpu
+sentence-transformers
+tiktoken
+
+# ── Retrieval ────────────────────────────────────────────────
+rank-bm25
+flashrank
+
+# ── FastAPI backend ───────────────────────────────────────────
+fastapi
+uvicorn[standard]
+httpx
+python-multipart
+slowapi
+
+# ── MLOps ────────────────────────────────────────────────────
+mlflow
+evidently
+
+# ── Testing ──────────────────────────────────────────────────
+pytest
+pytest-asyncio
+pytest-cov
+
+# ── Code quality ─────────────────────────────────────────────
+ruff
+mypy
+pre-commit
+
+# ── Monitoring ───────────────────────────────────────────────
+prometheus-client
+
+# ── Notebooks ────────────────────────────────────────────────
+jupyter
+ipykernel
+matplotlib
+seaborn
+plotly
+
+# ============================================================
+# GPU SETUP — run these manually once (not via pip install -r)
+# ============================================================
+# PyTorch CUDA 12.4 — already installed via conda:
+#   conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
+#
+# FAISS GPU — install via conda:
+#   conda install -c pytorch faiss-gpu
+#
+# Fix OpenMP conflict on Windows:
+#   conda env config vars set KMP_DUPLICATE_LIB_OK=TRUE
+#
+# Fine-tuning PEFT/LoRA — install when needed:
+#   pip install transformers peft datasets accelerate bitsandbytes
+# ============================================================

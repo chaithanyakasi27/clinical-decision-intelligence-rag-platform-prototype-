@@ -1,0 +1,88 @@
+# ============================================================
+# .gitignore — Clinical Decision Intelligence Platform
+# ============================================================
+
+# ── Python ───────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# ── Environment & secrets ────────────────────────────────────
+.env
+*.env.local
+*.env.production
+secrets/
+**/secrets.json
+
+# ── Data (large files) ───────────────────────────────────────
+data/synthea_output/fhir/*.json  # commit only samples in data/samples/
+data/faiss_index/
+data/clinical_notes/*.pdf        # commit only samples
+data/embeddings/
+
+# ── KEEP these reference files ───────────────────────────────
+!data/reference/
+!data/samples/
+
+# ── ML artifacts ─────────────────────────────────────────────
+mlruns/
+mlartifacts/
+*.pkl
+*.pt
+*.bin
+*.safetensors
+models/
+fine_tuning/checkpoints/
+
+# ── Testing & coverage ───────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Linting ──────────────────────────────────────────────────
+.ruff_cache/
+.mypy_cache/
+
+# ── Notebooks ────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Docker ───────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── AWS / Terraform ──────────────────────────────────────────
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.backup
+infra/terraform/.terraform.lock.hcl
+*.tfvars
+!infra/terraform/terraform.tfvars.example
+
+# ── IDE ──────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Logs ─────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── Large data files — do not push ───────────────────────────
+data/synthea_output/
+data/clinical_notes/
+data/faiss_index/
+synthea/
+notebooks/
+fine_tuning/

@@ -1,0 +1,121 @@
+# ============================================================
+# docker-compose.yml — Full local development stack
+# Services: FastAPI · MLflow · Prometheus · Grafana · LocalStack
+# Usage: make docker-up
+# ============================================================
+
+version: "3.9"
+
+services:
+
+  # ── FastAPI Application ─────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      target: development
+    container_name: cdip-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src                    # hot reload during dev
+      - ./data:/app/data
+      - ./.env:/app/.env
+    environment:
+      - ENVIRONMENT=local
+      - USE_LOCALSTACK=true
+      - LOCALSTACK_ENDPOINT=http://localstack:4566
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - localstack
+      - mlflow
+    networks:
+      - cdip-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── MLflow Tracking Server ──────────────────────────────────
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.14.0
+    container_name: cdip-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    command: >
+      mlflow server
+        --host 0.0.0.0
+        --port 5000
+        --backend-store-uri sqlite:////mlflow/mlflow.db
+        --default-artifact-root /mlflow/artifacts
+    networks:
+      - cdip-network
+    restart: unless-stopped
+
+  # ── LocalStack — mock AWS services ─────────────────────────
+  localstack:
+    image: localstack/localstack:3.4
+    container_name: cdip-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,dynamodb,iam
+      - DEBUG=0
+      - PERSISTENCE=1
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - ./scripts/localstack_init.sh:/etc/localstack/init/ready.d/init.sh
+    networks:
+      - cdip-network
+    restart: unless-stopped
+
+  # ── Prometheus — metrics scraping ──────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    container_name: cdip-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    networks:
+      - cdip-network
+    restart: unless-stopped
+
+  # ── Grafana — dashboards ────────────────────────────────────
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: cdip-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infra/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./infra/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - cdip-network
+    restart: unless-stopped
+
+volumes:
+  mlflow-data:
+  localstack-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  cdip-network:
+    driver: bridge
