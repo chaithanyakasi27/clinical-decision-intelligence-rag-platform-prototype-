@@ -1,6 +1,69 @@
-E11.9	Type 2 diabetes
-E11.65	Type 2 diabetes with hyperglycemia
-I50.9	Heart failure
-N18.3	CKD stage 3
-J44.1	COPD
-I10	Hypertension
+﻿# ICD-10-CM Codes 2024 — Clinical Decision Intelligence Platform
+# Format: CODE|SHORT_DESCRIPTION|FULL_DESCRIPTION
+# Source: CMS ICD-10-CM FY2024 code set
+# HCC-relevant codes are marked with [HCC]
+E08.65|Diabetes due to underlying condition with hyperglycemia|Diabetes mellitus due to underlying condition with hyperglycemia [HCC]
+E09.65|Drug or chemical induced diabetes with hyperglycemia|Drug or chemical induced diabetes mellitus with hyperglycemia [HCC]
+E10.10|Type 1 diabetes mellitus with ketoacidosis without coma|Type 1 diabetes mellitus with ketoacidosis without coma [HCC]
+E10.40|Type 1 diabetes mellitus with diabetic neuropathy unspecified|Type 1 diabetes mellitus with diabetic neuropathy, unspecified [HCC]
+E10.65|Type 1 diabetes mellitus with hyperglycemia|Type 1 diabetes mellitus with hyperglycemia [HCC]
+E10.9|Type 1 diabetes mellitus without complications|Type 1 diabetes mellitus without complications [HCC]
+E11.10|Type 2 diabetes mellitus with ketoacidosis without coma|Type 2 diabetes mellitus with ketoacidosis without coma [HCC]
+E11.21|Type 2 diabetes mellitus with diabetic nephropathy|Type 2 diabetes mellitus with diabetic nephropathy [HCC]
+E11.22|Type 2 diabetes mellitus with diabetic chronic kidney disease|Type 2 diabetes mellitus with diabetic chronic kidney disease [HCC]
+E11.40|Type 2 diabetes mellitus with diabetic neuropathy unspecified|Type 2 diabetes mellitus with diabetic neuropathy, unspecified [HCC]
+E11.42|Type 2 diabetes mellitus with diabetic polyneuropathy|Type 2 diabetes mellitus with diabetic polyneuropathy [HCC]
+E11.43|Type 2 diabetes mellitus with diabetic autonomic neuropathy|Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy [HCC]
+E11.51|Type 2 diabetes mellitus with diabetic macular edema|Type 2 diabetes mellitus with diabetic macular edema [HCC]
+E11.52|Type 2 diabetes mellitus with proliferative diabetic retinopathy|Type 2 diabetes mellitus with proliferative diabetic retinopathy [HCC]
+E11.610|Type 2 diabetes mellitus with diabetic neuropathic arthropathy|Type 2 diabetes mellitus with diabetic neuropathic arthropathy [HCC]
+E11.621|Type 2 diabetes mellitus with foot ulcer|Type 2 diabetes mellitus with foot ulcer [HCC]
+E11.65|Type 2 diabetes mellitus with hyperglycemia|Type 2 diabetes mellitus with hyperglycemia [HCC]
+E11.69|Type 2 diabetes mellitus with other specified complication|Type 2 diabetes mellitus with other specified complication [HCC]
+E11.8|Type 2 diabetes mellitus with unspecified complications|Type 2 diabetes mellitus with unspecified complications [HCC]
+E11.9|Type 2 diabetes mellitus without complications|Type 2 diabetes mellitus without complications [HCC]
+E13.9|Other specified diabetes mellitus without complications|Other specified diabetes mellitus without complications [HCC]
+I10|Essential (primary) hypertension|Essential (primary) hypertension
+I11.0|Hypertensive heart disease with heart failure|Hypertensive heart disease with heart failure [HCC]
+I11.9|Hypertensive heart disease without heart failure|Hypertensive heart disease without heart failure
+I12.9|Hypertensive chronic kidney disease with CKD stage 1-4|Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease [HCC]
+I25.10|Atherosclerotic heart disease of native coronary artery|Atherosclerotic heart disease of native coronary artery without angina pectoris [HCC]
+I25.110|Atherosclerotic heart disease with unstable angina pectoris|Atherosclerotic heart disease of native coronary artery with unstable angina pectoris [HCC]
+I48.0|Paroxysmal atrial fibrillation|Paroxysmal atrial fibrillation [HCC]
+I48.11|Longstanding persistent atrial fibrillation|Longstanding persistent atrial fibrillation [HCC]
+I48.20|Chronic atrial fibrillation unspecified|Chronic atrial fibrillation, unspecified [HCC]
+I48.91|Unspecified atrial fibrillation|Unspecified atrial fibrillation [HCC]
+I50.1|Left ventricular failure unspecified|Left ventricular failure, unspecified [HCC]
+I50.20|Unspecified systolic congestive heart failure|Unspecified systolic (congestive) heart failure [HCC]
+I50.22|Chronic systolic congestive heart failure|Chronic systolic (congestive) heart failure [HCC]
+I50.30|Unspecified diastolic congestive heart failure|Unspecified diastolic (congestive) heart failure [HCC]
+I50.31|Acute diastolic congestive heart failure|Acute diastolic (congestive) heart failure [HCC]
+I50.32|Chronic diastolic congestive heart failure|Chronic diastolic (congestive) heart failure [HCC]
+I50.33|Acute on chronic diastolic congestive heart failure|Acute on chronic diastolic (congestive) heart failure [HCC]
+I50.40|Unspecified combined systolic and diastolic heart failure|Unspecified combined systolic and diastolic (congestive) heart failure [HCC]
+I50.9|Heart failure unspecified|Heart failure, unspecified [HCC]
+I63.00|Cerebral infarction due to thrombosis of unspecified precerebral artery|Cerebral infarction due to thrombosis of unspecified precerebral artery [HCC]
+I63.50|Cerebral infarction due to unspecified occlusion of unspecified cerebral artery|Cerebral infarction due to unspecified occlusion or stenosis of unspecified cerebral artery [HCC]
+I70.201|Unspecified atherosclerosis of native arteries of extremities right leg|Unspecified atherosclerosis of native arteries of extremities, right leg [HCC]
+I70.231|Atherosclerosis of native arteries right leg with ulceration of thigh|Atherosclerosis of native arteries of right leg with ulceration of thigh [HCC]
+J44.0|COPD with acute lower respiratory infection|Chronic obstructive pulmonary disease with acute lower respiratory infection [HCC]
+J44.1|COPD with acute exacerbation|Chronic obstructive pulmonary disease with (acute) exacerbation [HCC]
+J44.9|Chronic obstructive pulmonary disease unspecified|Chronic obstructive pulmonary disease, unspecified [HCC]
+J45.20|Mild intermittent asthma uncomplicated|Mild intermittent asthma, uncomplicated
+J45.40|Moderate persistent asthma uncomplicated|Moderate persistent asthma, uncomplicated
+J45.51|Severe persistent asthma with acute exacerbation|Severe persistent asthma with (acute) exacerbation [HCC]
+N18.1|Chronic kidney disease stage 1|Chronic kidney disease, stage 1
+N18.2|Chronic kidney disease stage 2 mild|Chronic kidney disease, stage 2 (mild)
+N18.3|Chronic kidney disease stage 3 moderate|Chronic kidney disease, stage 3 (moderate) [HCC]
+N18.30|Chronic kidney disease stage 3 unspecified|Chronic kidney disease, stage 3 unspecified [HCC]
+N18.31|Chronic kidney disease stage 3a|Chronic kidney disease, stage 3a [HCC]
+N18.32|Chronic kidney disease stage 3b|Chronic kidney disease, stage 3b [HCC]
+N18.4|Chronic kidney disease stage 4 severe|Chronic kidney disease, stage 4 (severe) [HCC]
+N18.5|Chronic kidney disease stage 5|Chronic kidney disease, stage 5 [HCC]
+N18.6|End-stage renal disease|End-stage renal disease [HCC]
+N18.9|Chronic kidney disease unspecified|Chronic kidney disease, unspecified [HCC]
+Z79.4|Long-term current use of insulin|Long-term (current) use of insulin
+Z79.01|Long-term current use of anticoagulants|Long-term (current) use of anticoagulants
+Z79.51|Long-term current use of inhaled steroids|Long-term (current) use of inhaled steroids
+Z79.52|Long-term current use of systemic steroids|Long-term (current) use of systemic steroids
+Z79.84|Long-term current use of oral hypoglycemic drugs|Long-term (current) use of oral hypoglycemic drugs

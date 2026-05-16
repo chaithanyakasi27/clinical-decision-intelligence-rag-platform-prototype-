@@ -1,7 +1,66 @@
-ICD_CODE,HCC_NUM,HCC_LABEL,RAF_SCORE
-E11.9,19,Diabetes,0.104
-E11.65,19,Diabetes,0.104
-I50.9,85,Heart Failure,0.323
-N18.3,136,CKD Stage 3,0.289
-J44.1,111,COPD,0.335
-I10,0,Hypertension,0.0
+﻿icd10_code,hcc_category,hcc_label,hcc_model_version,is_hcc,clinical_category
+E08.65,37,Diabetes without Complication,V28,true,Diabetes
+E09.65,37,Diabetes without Complication,V28,true,Diabetes
+E10.10,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E10.40,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E10.65,37,Diabetes without Complication,V28,true,Diabetes
+E10.9,37,Diabetes without Complication,V28,true,Diabetes
+E11.10,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.21,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.22,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.40,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.42,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.43,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.51,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.52,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.610,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.621,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.65,37,Diabetes without Complication,V28,true,Diabetes
+E11.69,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.8,38,Diabetes with Chronic Complications,V28,true,Diabetes
+E11.9,37,Diabetes without Complication,V28,true,Diabetes
+E13.9,37,Diabetes without Complication,V28,true,Diabetes
+I10,,Not an HCC - Hypertension alone,V28,false,Cardiovascular
+I11.0,85,Congestive Heart Failure,V28,true,Cardiovascular
+I11.9,,Not an HCC,V28,false,Cardiovascular
+I12.9,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+I25.10,86,Coronary Artery Disease,V28,true,Cardiovascular
+I25.110,86,Coronary Artery Disease,V28,true,Cardiovascular
+I48.0,96,Specified Heart Arrhythmias,V28,true,Cardiovascular
+I48.11,96,Specified Heart Arrhythmias,V28,true,Cardiovascular
+I48.20,96,Specified Heart Arrhythmias,V28,true,Cardiovascular
+I48.91,96,Specified Heart Arrhythmias,V28,true,Cardiovascular
+I50.1,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.20,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.22,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.30,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.31,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.32,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.33,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.40,85,Congestive Heart Failure,V28,true,Cardiovascular
+I50.9,85,Congestive Heart Failure,V28,true,Cardiovascular
+I63.00,100,Ischemic or Unspecified Stroke,V28,true,Neurological
+I63.50,100,Ischemic or Unspecified Stroke,V28,true,Neurological
+I70.201,107,Vascular Disease,V28,true,Cardiovascular
+I70.231,107,Vascular Disease,V28,true,Cardiovascular
+J44.0,111,Chronic Obstructive Pulmonary Disease,V28,true,Pulmonary
+J44.1,111,Chronic Obstructive Pulmonary Disease,V28,true,Pulmonary
+J44.9,111,Chronic Obstructive Pulmonary Disease,V28,true,Pulmonary
+J45.20,,Not an HCC - Mild Asthma,V28,false,Pulmonary
+J45.40,,Not an HCC - Moderate Persistent Asthma,V28,false,Pulmonary
+J45.51,112,Fibrosis of Lung and Other Chronic Lung Disorders,V28,true,Pulmonary
+N18.1,,Not an HCC - CKD Stage 1,V28,false,Renal
+N18.2,,Not an HCC - CKD Stage 2,V28,false,Renal
+N18.3,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+N18.30,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+N18.31,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+N18.32,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+N18.4,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+N18.5,136,Chronic Kidney Disease Stage 5 Nondialysis,V28,true,Renal
+N18.6,134,Dialysis Status,V28,true,Renal
+N18.9,138,Chronic Kidney Disease Stage 3-4,V28,true,Renal
+Z79.4,,Not an HCC - Documents Insulin Use affects DM coding,V28,false,Medication
+Z79.01,,Not an HCC - Anticoagulant Use,V28,false,Medication
+Z79.51,,Not an HCC - Inhaled Steroid Use,V28,false,Medication
+Z79.52,,Not an HCC - Systemic Steroid Use,V28,false,Medication
+Z79.84,,Not an HCC - Oral Hypoglycemic Use,V28,false,Medication

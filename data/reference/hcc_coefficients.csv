@@ -1,5 +1,38 @@
-HCC_NUM,HCC_LABEL,COEFFICIENT
-19,Diabetes,0.104
-85,Heart Failure,0.323
-136,CKD,0.289
-111,COPD,0.335
+﻿hcc_category,hcc_label,raf_score_community_nondual_aged,raf_score_community_nondual_disabled,raf_score_community_fbd_dual_aged,raf_score_community_fbd_dual_disabled,raf_score_institutional,hcc_model_version,clinical_description
+1,HIV/AIDS,0.335,0.421,0.297,0.368,0.249,V28,HIV infection and AIDS
+2,Septicemia Sepsis SIRS Shock,1.490,1.337,1.391,1.247,0.842,V28,Septicemia and septic shock conditions
+6,Opportunistic Infections,0.476,0.565,0.437,0.528,0.361,V28,Opportunistic infections in immunocompromised patients
+17,Cancer Lung and Other Severe Cancers,1.024,0.904,0.975,0.865,0.625,V28,Lung cancer and other severe malignancies
+18,Cancer Lymphatic and Other Major Cancers,0.679,0.617,0.635,0.579,0.436,V28,Lymphatic cancers and other major malignancies
+19,Cancer Breast and Other Cancers and Tumors,0.155,0.148,0.146,0.141,0.115,V28,Breast cancer and other less severe malignancies
+23,Type 1 Diabetes with Acute Complications,0.331,0.362,0.313,0.341,0.238,V28,Type 1 diabetes mellitus with acute complications
+37,Diabetes without Complication,0.105,0.098,0.099,0.092,0.078,V28,Type 1 and Type 2 diabetes mellitus without complications or with hyperglycemia
+38,Diabetes with Chronic Complications,0.302,0.289,0.283,0.271,0.208,V28,Diabetes mellitus with chronic kidney disease neuropathy retinopathy or other complications
+46,Severe Hematological Disorders,0.512,0.484,0.481,0.454,0.347,V28,Aplastic anemia and other severe hematological conditions
+54,Developmental Disabilities,0.477,0.428,0.443,0.398,0.302,V28,Intellectual disabilities and developmental conditions
+57,Schizophrenia,0.465,0.432,0.437,0.406,0.311,V28,Schizophrenia spectrum disorders
+58,Major Depressive Bipolar and Paranoid Disorders,0.212,0.201,0.200,0.190,0.148,V28,Major depressive disorder bipolar disorder and paranoid conditions
+70,Quadriplegia,1.191,1.082,1.107,1.007,0.724,V28,Quadriplegia and related spinal cord conditions
+73,ALS and Other Anterior Horn Cell Disease,0.891,0.813,0.831,0.759,0.548,V28,ALS and anterior horn cell diseases
+75,Myasthenia Gravis and Hereditary Muscle Disease,0.384,0.355,0.361,0.334,0.247,V28,Myasthenia gravis and hereditary muscle diseases
+79,Seizure Disorders and Convulsions,0.282,0.267,0.266,0.252,0.190,V28,Epilepsy seizure disorders and convulsions
+80,Coma Brain Compression and Anoxic Damage,0.569,0.529,0.534,0.497,0.369,V28,Coma and anoxic brain damage
+82,Respirator Dependence and Tracheostomy Status,1.218,1.108,1.133,1.031,0.742,V28,Mechanical ventilator dependence and tracheostomy
+83,Respiratory Arrest,0.853,0.775,0.794,0.722,0.524,V28,Respiratory arrest and failure
+84,Cardio-Respiratory Failure and Shock,0.480,0.443,0.450,0.416,0.308,V28,Cardio-respiratory failure and circulatory shock
+85,Congestive Heart Failure,0.323,0.305,0.304,0.287,0.219,V28,Congestive heart failure systolic and diastolic
+86,Coronary Artery Disease,0.148,0.137,0.139,0.129,0.100,V28,Coronary artery disease and atherosclerosis of native vessels
+96,Specified Heart Arrhythmias,0.278,0.260,0.261,0.244,0.183,V28,Atrial fibrillation flutter and other specified arrhythmias
+100,Ischemic or Unspecified Stroke,0.379,0.355,0.356,0.334,0.253,V28,Ischemic stroke and unspecified stroke
+103,Hemiplegia and Hemiparesis,0.616,0.571,0.578,0.536,0.397,V28,Hemiplegia and hemiparesis post-stroke
+107,Vascular Disease,0.288,0.268,0.271,0.252,0.189,V28,Peripheral vascular disease and atherosclerosis of extremities
+108,Vascular Disease with Complications,0.604,0.562,0.567,0.528,0.393,V28,Vascular disease with limb complications or ulceration
+111,Chronic Obstructive Pulmonary Disease,0.325,0.307,0.306,0.290,0.219,V28,COPD emphysema and chronic bronchitis
+112,Fibrosis of Lung and Other Chronic Lung Disorders,0.198,0.185,0.186,0.174,0.132,V28,Pulmonary fibrosis and other chronic lung disorders
+114,Aspiration and Specified Bacterial Pneumonias,0.597,0.555,0.560,0.521,0.389,V28,Aspiration pneumonia and specified bacterial pneumonias
+134,Dialysis Status,0.443,0.420,0.416,0.396,0.300,V28,Hemodialysis and peritoneal dialysis status
+135,Acute Renal Failure,0.529,0.492,0.497,0.462,0.344,V28,Acute renal failure and acute tubular necrosis
+136,Chronic Kidney Disease Stage 5 Nondialysis,0.289,0.271,0.272,0.255,0.192,V28,Chronic kidney disease stage 5 not requiring dialysis
+138,Chronic Kidney Disease Stage 3-4,0.082,0.078,0.077,0.073,0.057,V28,Chronic kidney disease stages 3 and 4
+158,Pressure Ulcer with Necrosis or Infection,0.797,0.740,0.747,0.694,0.517,V28,Pressure ulcers with necrosis through skin or underlying tissue
+161,Chronic Ulcer of Skin Except Pressure,0.515,0.478,0.483,0.449,0.335,V28,Chronic venous stasis and other non-pressure skin ulcers
