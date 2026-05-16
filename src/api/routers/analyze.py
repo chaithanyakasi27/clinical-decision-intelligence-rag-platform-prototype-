@@ -11,10 +11,14 @@
 #   Request → retriever → context → Claude → JSON response
 # ============================================================
 
+import time
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 from loguru import logger
+
+from src.monitoring.metrics import record_request, record_retrieval, API_LATENCY_SECONDS
 
 router = APIRouter()
 
@@ -67,6 +71,8 @@ async def analyze_chart(request: AnalyzeChartRequest):
     """
     logger.info(f"POST /analyze-chart | patient={request.patient_id}")
 
+    _t0 = time.perf_counter()
+    _status = "success"
     try:
         from src.api.dependencies import get_rag_pipeline
 
@@ -79,6 +85,7 @@ async def analyze_chart(request: AnalyzeChartRequest):
                 detail=f"Analysis failed: {response.error}"
             )
 
+        record_retrieval(len(response.retrieved_chunks))
         return AnalyzeChartResponse(
             patient_id       = request.patient_id,
             query            = request.query,
@@ -88,7 +95,12 @@ async def analyze_chart(request: AnalyzeChartRequest):
         )
 
     except HTTPException:
+        _status = "error"
         raise
     except Exception as e:
+        _status = "error"
         logger.error(f"Chart analysis error: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        record_request("analyze_chart", _status)
+        API_LATENCY_SECONDS.labels(endpoint="analyze_chart").observe(time.perf_counter() - _t0)

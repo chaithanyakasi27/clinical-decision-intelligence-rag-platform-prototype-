@@ -13,10 +13,14 @@
 #     that mention diabetes with hyperglycemia
 # ============================================================
 
+import time
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 from loguru import logger
+
+from src.monitoring.metrics import record_request, record_retrieval, API_LATENCY_SECONDS
 
 router = APIRouter()
 
@@ -69,6 +73,8 @@ async def retrieve_evidence(request: EvidenceRequest):
         f"top_k={request.top_k}"
     )
 
+    _t0 = time.perf_counter()
+    _status = "success"
     try:
         from src.api.dependencies import get_rag_pipeline
 
@@ -84,20 +90,18 @@ async def retrieve_evidence(request: EvidenceRequest):
                 detail=f"Evidence retrieval failed: {response.error}"
             )
 
-        # Format raw retrieval hits for the API response
-        # Each hit shows the text, which section it came from,
-        # which file it came from, and its similarity score
         retrieval_hits = [
             {
                 "rank"    : r.rank,
                 "score"   : round(r.final_score, 4),
                 "section" : r.chunk.section or "unknown",
                 "file"    : r.chunk.file_name,
-                "text"    : r.chunk.text[:300],  # truncate for readability
+                "text"    : r.chunk.text[:300],
             }
             for r in response.retrieved_chunks
         ]
 
+        record_retrieval(len(response.retrieved_chunks))
         return EvidenceResponse(
             patient_id       = request.patient_id,
             query            = request.query,
@@ -108,7 +112,12 @@ async def retrieve_evidence(request: EvidenceRequest):
         )
 
     except HTTPException:
+        _status = "error"
         raise
     except Exception as e:
+        _status = "error"
         logger.error(f"Evidence retrieval error: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        record_request("retrieve_evidence", _status)
+        API_LATENCY_SECONDS.labels(endpoint="retrieve_evidence").observe(time.perf_counter() - _t0)

@@ -16,10 +16,14 @@
 # ============================================================
 
 
+import time
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 from loguru import logger
+
+from src.monitoring.metrics import record_request, record_retrieval, API_LATENCY_SECONDS
 
 router = APIRouter()
 
@@ -76,6 +80,8 @@ async def validate_response(request: ValidateRequest):
         f"codes={len(request.coding_output.get('hcc_codes', []))}"
     )
 
+    _t0 = time.perf_counter()
+    _status = "success"
     try:
         from src.api.dependencies import get_rag_pipeline
 
@@ -91,6 +97,7 @@ async def validate_response(request: ValidateRequest):
                 detail=f"Validation failed: {response.error}"
             )
 
+        record_retrieval(len(response.retrieved_chunks))
         return ValidateResponse(
             patient_id       = request.patient_id,
             validation       = response.answer,
@@ -99,7 +106,12 @@ async def validate_response(request: ValidateRequest):
         )
 
     except HTTPException:
+        _status = "error"
         raise
     except Exception as e:
+        _status = "error"
         logger.error(f"Validation error: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        record_request("validate_response", _status)
+        API_LATENCY_SECONDS.labels(endpoint="validate_response").observe(time.perf_counter() - _t0)

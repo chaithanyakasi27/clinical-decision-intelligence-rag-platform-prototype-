@@ -12,10 +12,14 @@
 #   → Total RAF score: 0.427
 # ============================================================
 
+import time
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 from loguru import logger
+
+from src.monitoring.metrics import record_request, record_retrieval, API_LATENCY_SECONDS, AGENT_PIPELINE_TOTAL
 
 router = APIRouter()
 
@@ -74,6 +78,8 @@ async def generate_hcc_code(request: HCCCodeRequest):
         f"agents={request.use_agents}"
     )
 
+    _t0 = time.perf_counter()
+    _status = "success"
     try:
         from src.api.dependencies import get_rag_pipeline
 
@@ -89,6 +95,7 @@ async def generate_hcc_code(request: HCCCodeRequest):
                 query      = request.query,
                 patient_id = request.patient_id,
             )
+            AGENT_PIPELINE_TOTAL.labels(outcome="success").inc()
             return HCCCodeResponse(
                 patient_id        = result.get("patient_id"),
                 query             = request.query,
@@ -111,7 +118,7 @@ async def generate_hcc_code(request: HCCCodeRequest):
                 )
 
             answer = response.answer
-
+            record_retrieval(len(response.retrieved_chunks))
             return HCCCodeResponse(
                 patient_id        = request.patient_id,
                 query             = request.query,
@@ -125,7 +132,16 @@ async def generate_hcc_code(request: HCCCodeRequest):
             )
 
     except HTTPException:
+        _status = "error"
+        if request.use_agents:
+            AGENT_PIPELINE_TOTAL.labels(outcome="failure").inc()
         raise
     except Exception as e:
+        _status = "error"
+        if request.use_agents:
+            AGENT_PIPELINE_TOTAL.labels(outcome="failure").inc()
         logger.error(f"HCC coding error: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        record_request("generate_hcc_code", _status)
+        API_LATENCY_SECONDS.labels(endpoint="generate_hcc_code").observe(time.perf_counter() - _t0)
