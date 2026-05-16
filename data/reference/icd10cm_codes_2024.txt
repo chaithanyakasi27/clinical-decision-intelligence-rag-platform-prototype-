@@ -1,0 +1,6 @@
+E11.9	Type 2 diabetes
+E11.65	Type 2 diabetes with hyperglycemia
+I50.9	Heart failure
+N18.3	CKD stage 3
+J44.1	COPD
+I10	Hypertension
