@@ -89,7 +89,7 @@ class ClinicalRAGPipeline:
     def __init__(
         self,
         retriever   : HybridRetriever,
-        model       : str   = "claude-sonnet-4-20250514",
+        model       : str   = "us.anthropic.claude-sonnet-4-6",
         temperature : float = settings.openai_temperature,
         max_tokens  : int   = settings.openai_max_tokens,
     ):
@@ -107,21 +107,19 @@ class ClinicalRAGPipeline:
         self._llm        = None  # lazy load
     @property
     def llm(self):
-        """
-        Lazy-load Claude via langchain-anthropic.
-
-        We import here so the server starts even if
-        ANTHROPIC_API_KEY is not set yet.
-        """
         if self._llm is None:
-            from langchain_anthropic import ChatAnthropic
-            self._llm = ChatAnthropic(
-                model       = self.model,
-                temperature = self.temperature,
-                max_tokens  = self.max_tokens,
-                api_key     = settings.anthropic_api_key,
+            from langchain_aws import ChatBedrock
+            self._llm = ChatBedrock(
+                model_id              = "us.anthropic.claude-sonnet-4-6",
+                region_name           = settings.aws_default_region,
+                aws_access_key_id     = settings.aws_access_key_id,
+                aws_secret_access_key = settings.aws_secret_access_key,
+                model_kwargs          = {
+                    "temperature": self.temperature,
+                    "max_tokens" : self.max_tokens,
+                },
             )
-            logger.info(f"Claude LLM loaded: {self.model}")
+            logger.info("Claude Sonnet 4.6 via AWS Bedrock loaded")
         return self._llm
     
     # ── Public pipeline methods ───────────────────────────────
