@@ -48,7 +48,9 @@ jobs:
           aws ecs describe-task-definition \
             --task-definition cdip-dev-api \
             --query taskDefinition \
-            > task-definition.json
+            --output json > task-definition.json
+          echo "Task definition downloaded successfully"
+          cat task-definition.json | head -5
 
       - name: Update ECS task definition with new image
         id: task-def
@@ -64,4 +66,4 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+          wait-for-service-stability: false
